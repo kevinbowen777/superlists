@@ -7,12 +7,13 @@ Python: Obey the Testing Goat
  - `git clone https://github.com/kevinbowen777/superlists.git`
  - `cd superlists`
  - `mkvirtualenv superlists`
+ - `python manage.py runserver`
  - Open browser to http://127.0.0.1:8000`
 
 
 ---
 ## Features
- - None. 
+ - TBD
 
 ---
 [![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/kevinbowen777/superlists/blob/master/LICENSE)
