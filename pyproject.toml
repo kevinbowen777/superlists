@@ -24,8 +24,8 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.10"
 Django = "^4.0.6"
-selenium = "^4.3.0"
 environs = {extras = ["django"], version = "^9.5.0"}
+selenium = "3.141.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
