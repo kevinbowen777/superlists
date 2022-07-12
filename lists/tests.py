@@ -23,6 +23,15 @@ class HomePageTest(TestCase):
         self.client.get("/")
         self.assertEqual(Item.objects.count(), 0)
 
+    def test_displays_all_list_items(self):
+        Item.objects.create(text="itemey 1")
+        Item.objects.create(text="itemey 2")
+
+        response = self.client.get("/")
+
+        self.assertIn("Itemey 1", response.content.decode())
+        self.assertIn("Itemey 2", response.content.decode())
+
 
 class ItemModelTest(TestCase):
     def test_saving_and_retrieving_items(self):
