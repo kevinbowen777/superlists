@@ -57,13 +57,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+# from pathlib import Path
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR = Path(__file__).resolve().parent.parent
 # Database
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": Path.joinpath(BASE_DIR, "../database/db.sqlite3"),
+    }
+}
+"""
 DATABASES = {
     "default": env.dj_db_url(
         "DATABASE_URL", default="postgres://postgres@db/postgres"
     )
 }
-
+"""
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
