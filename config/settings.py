@@ -1,19 +1,21 @@
 """Settings for superlists TDD project"""
 from pathlib import Path
 
-from environs import Env
+# from environs import Env
 
-env = Env()
-env.read_env()
+# env = Env()
+# env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY = "SECRET_KEY"
+# SECRET_KEY = env.str("SECRET_KEY")
 
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = True
+# DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
