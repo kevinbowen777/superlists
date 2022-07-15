@@ -32,7 +32,7 @@ def _get_latest_source(source_folder):
     current_commit = local(  # noqa:F841
         "git log -n 1 --format=%H", capture=True
     )
-    # run(f'cd {source_folder} && git reset --hard {current_commit}')
+    run(f"cd {source_folder} && git reset --hard {current_commit}")
 
 
 def _update_settings(source_folder, site_name):
