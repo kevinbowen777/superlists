@@ -16,6 +16,7 @@ DEBUG = True
 # DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ["165.232.131.115", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["http://165.232.131.115"]
 
 # Application definition
 INSTALLED_APPS = [
