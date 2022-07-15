@@ -13,7 +13,7 @@ def deploy():
     _get_latest_source(source_folder)
     _update_settings(source_folder, env.host)
     _update_virtualenv(source_folder)
-    _update_static_files(source_folder)  # noqa:F821
+    _update_static_files(source_folder)
     _update_database(source_folder)  # noqa:F821
 
 
@@ -51,4 +51,11 @@ def _update_virtualenv(source_folder):
         run(f"python -m venv {virtualenv_folder}")
     run(
         f"{virtualenv_folder}/bin/pip install -r {source_folder}/requirements.txt"  # noqa:E501
+    )
+
+
+def _update_static_files(source_folder):
+    run(
+        f"cd {source_folder}"
+        " && ../virtualenv/bin/python manage.py collectstatic --noinput"
     )
