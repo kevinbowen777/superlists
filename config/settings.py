@@ -15,7 +15,7 @@ SECRET_KEY = "SECRET_KEY"
 DEBUG = True
 # DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["165.232.131.115"]
 
 # Application definition
 INSTALLED_APPS = [
