@@ -9,9 +9,14 @@ REPO_URL = "https://github.com/kevinbowen777/superlists.git"
 def deploy():
     site_folder = f"/home/{env.user}/sites/{env.host}"
     source_folder = site_folder + "/source"
-    _create_directory_structure_if_necessary(site_folder)  # noqa:F821
+    _create_directory_structure_if_necessary(site_folder)
     _get_latest_source(source_folder)  # noqa:F821
     _update_settings(source_folder, env.host)  # noqa:F821
     _update_virtualenv(source_folder)  # noqa:F821
     _update_static_files(source_folder)  # noqa:F821
     _update_database(source_folder)  # noqa:F821
+
+
+def _create_directory_structure_if_necessary(site_folder):
+    for subfolder in ("database", "static", "virtualenv", "source"):
+        run(f"mkdir -p {site_folder}/{subfolder}")
