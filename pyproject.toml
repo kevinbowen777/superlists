@@ -27,6 +27,7 @@ Django = "^4.0.6"
 environs = {extras = ["django"], version = "^9.5.0"}
 selenium = "3.141.0"
 gunicorn = "^20.1.0"
+Fabric3 = "^1.14.post1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
