@@ -1,7 +1,7 @@
 # deploy_tools/fabfile.py
-from fabric.contrib.files import append, exists, sed  # noqa:F401
-from fabric.api import env, local, run  # noqa:F401
-import random  # noqa:F401
+from fabric.contrib.files import append, exists, sed
+from fabric.api import env, local, run
+import random
 
 REPO_URL = "https://github.com/kevinbowen777/superlists.git"
 
@@ -11,7 +11,7 @@ def deploy():
     source_folder = site_folder + "/source"
     _create_directory_structure_if_necessary(site_folder)
     _get_latest_source(source_folder)
-    _update_settings(source_folder, env.host)  # noqa:F821
+    _update_settings(source_folder, env.host)
     _update_virtualenv(source_folder)  # noqa:F821
     _update_static_files(source_folder)  # noqa:F821
     _update_database(source_folder)  # noqa:F821
@@ -29,3 +29,17 @@ def _get_latest_source(source_folder):
         run(f"git clone {REPO_URL} {source_folder}")
     current_commit = local("git log -n 1 --format=%H", capture=True)
     run(f"cd {source_folder} && git reset --hard {current_commit}")
+
+
+def _update_settings(source_folder, site_name):
+    settings_path = source_folder + "/config/settings.py"
+    sed(settings_path, "DEBUG = True", "DEBUG = False")
+    sed(
+        settings_path, "ALLOWED_HOSTS =.+$", f"ALLOWED_HOSTS = ['{site_name}']"
+    )
+    secret_key_file = source_folder + "/config/secret_key.py"
+    if not exists(secret_key_file):
+        chars = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"
+        key = "".join(random.SystemRandom().choice(chars) for _ in range(50))
+        append(secret_key_file, f"SECRET_KEY = '{key}'")
+    append(settings_path, "\nfrom .secret_key import SECRET_KEY")
