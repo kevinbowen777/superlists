@@ -14,7 +14,7 @@ def deploy():
     _update_settings(source_folder, env.host)
     _update_virtualenv(source_folder)
     _update_static_files(source_folder)
-    _update_database(source_folder)  # noqa:F821
+    _update_database(source_folder)
 
 
 def _create_directory_structure_if_necessary(site_folder):
@@ -58,4 +58,11 @@ def _update_static_files(source_folder):
     run(
         f"cd {source_folder}"
         " && ../virtualenv/bin/python manage.py collectstatic --noinput"
+    )
+
+
+def _update_database(source_folder):
+    run(
+        f"cd {source_folder}"
+        " && ../virtualenv/bin/python manage.py migrate --noinput"
     )
