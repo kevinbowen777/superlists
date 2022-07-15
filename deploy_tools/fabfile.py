@@ -35,7 +35,7 @@ def _update_settings(source_folder, site_name):
     settings_path = source_folder + "/config/settings.py"
     sed(settings_path, "DEBUG = True", "DEBUG = False")
     sed(
-        settings_path, "ALLOWED_HOSTS =.+$", f"ALLOWED_HOSTS = ['{site_name}']"
+        settings_path, "ALLOWED_HOSTS =.+$", f'ALLOWED_HOSTS = ["{site_name}"]'
     )
     secret_key_file = source_folder + "/config/secret_key.py"
     if not exists(secret_key_file):
@@ -48,7 +48,7 @@ def _update_settings(source_folder, site_name):
 def _update_virtualenv(source_folder):
     virtualenv_folder = source_folder + "/../virtualenv"
     if not exists(virtualenv_folder + "/bin/pip"):
-        run(f"python -m venv {virtualenv_folder}")
+        run(f"python3.8 -m venv {virtualenv_folder}")
     run(
         f"{virtualenv_folder}/bin/pip install -r {source_folder}/requirements.txt"  # noqa:E501
     )
