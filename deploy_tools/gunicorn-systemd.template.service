@@ -1,3 +1,4 @@
+# Install at /etc/systemd/system/gunicorn-SITENAME.service
 [Unit]
 Description=Gunicorn server for SITENAME
 
