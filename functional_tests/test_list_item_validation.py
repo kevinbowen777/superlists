@@ -68,3 +68,32 @@ class ItemValidationTest(FunctionalTest):
                 "You've already got this in your list",
             )
         )
+
+    def test_error_message_are_cleared_on_input(self):
+        # Cassandra starts a list and causes a validation error:
+        self.browser.get(self.live_server_url)
+        self.get_item_input_box().send_keys("Oops! It happened again")
+        self.get_item_input_box().send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table("1: Oops! It happened again")
+        self.get_item_input_box().send_keys("Oops! It happened again")
+        self.get_item_input_box().send_keys(Keys.ENTER)
+
+        self.wait_for(
+            lambda: self.assertTrue(
+                self.browser.find_element_by_css_selector(
+                    ".has-error"
+                ).is_displayed()
+            )
+        )
+
+        # She starts typing in the input box to clear the error
+        self.get_item_input_box().send_keys("a")
+
+        # She is pleased to see that the error message disappears
+        self.wait_for(
+            lambda: self.assertFalse(
+                self.browser.find_element_by_css_selector(
+                    ".has-error"
+                ).is_displayed()
+            )
+        )
