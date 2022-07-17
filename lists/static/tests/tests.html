@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>QUnit Javascript Test Suite</title>
+    <title>Superlists - QUnit Javascript Test Suite</title>
     <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.1.css">
 </head>
 <body>
@@ -22,13 +22,13 @@
   <script>
 
     QUnit.test("errors should be hidden on keypress", function (assert) {
-      initialize();
+      window.Superlists.initialize();
       $('input[name="text"]').trigger("keypress");
       assert.equal($(".has-error").is(":visible"), false);
     });
 
     QUnit.test("errors aren't hidden if there is no keypress", function (assert) {
-      initialize();
+      window.Superlists.initialize();
       assert.equal($(".has-error").is(":visible"), true);
     });
 
