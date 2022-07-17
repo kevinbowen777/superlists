@@ -72,7 +72,7 @@ class ItemValidationTest(FunctionalTest):
             )
         )
 
-    def test_error_message_are_cleared_on_input(self):
+    def test_error_messages_are_cleared_on_input(self):
         # Cassandra starts a list and causes a validation error:
         self.browser.get(self.live_server_url)
         self.get_item_input_box().send_keys("Oops! It happened again")
