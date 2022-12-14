@@ -1,0 +1,9 @@
+.git
+.github
+.nox
+.pytest_cache
+**/__pycache__*
+docs
+dist
+htmlcov
+*.sqlite3

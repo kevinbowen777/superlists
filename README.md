@@ -10,6 +10,7 @@ Python: Obey the Testing Goat
  - `python manage.py runserver`
  - Open browser to http://127.0.0.1:8000`
 
+[Mirror repository](https://gitlab.com/kevinbowen/superlists.git)
 
 ---
 ## Features
